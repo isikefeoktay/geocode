@@ -2,192 +2,16 @@
 <html>
 
 <head>
-  <title>Reverse Geocoding</title>
+  <title>Geocoding</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-  <style type="text/css">
-    /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-    #map {
-      position: relative;
-      height: 100%;
-      height: 500px;
-      width: 500px;
-      float: right;
-      margin-right: 5%;
-      top: 10%;
-      right: 5%;
-
-
-
-    }
-
-    /* Optional: Makes the sample page fill the window. */
-    html,
-    body {
-      background-image: url(world.jpg);
-      background-position: center;
-      background-size: 100% 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background-repeat: no-repeat;
-
-    }
-
-    #floating-panel {
-      position: absolute;
-      top: 12.5%;
-      left: 25%;
-      z-index: 5;
-      background-color: #fff;
-      padding: 15px;
-      border: 3px solid #999;
-      text-align: center;
-      font-family: "Roboto", "sans-serif";
-      line-height: 30px;
-      padding-left: 10px;
-      /*width: 500px;*/
-      float: left;
-
-
-    }
-
-    #floating-panel2 {
-      position: absolute;
-      top: 40%;
-      left: 25%;
-      z-index: 5;
-      background-color: #fff;
-      padding: 15px;
-      border: 3px solid #999;
-      text-align: left;
-      font-family: 'Montserrat', sans-serif;
-      line-height: 30px;
-      padding-left: 10px;
-      margin-left: -200px;
-      width: 350px;
-    }
-
-    #floating-panel {
-      /*left: 30%;*/
-      margin-left: -200px;
-      width: 350px;
-      z-index: 5;
-      background-color: #fff;
-      /*padding: 5px;
-      border: 1px solid #999;*/
-
-    }
-
-    #latlng {
-      width: 225px;
-    }
-
-    label {
-      color: black;
-    }
-
-    #deneme {
-      top: 50%;
-      left: 50%;
-      height: 700px;
-      width: 60%;
-      transform: translate(-50%, -50%);
-      background-color: white;
-      position: relative;
-      border-radius: 25px;
-    }
-
-    input[type="textbox"] {
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    input[type="button"] {
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    input[type="text"] {
-      font-family: 'Montserrat', sans-serif;
-    }
-
-  </style>
-
-
-
-  <script>
-    function initMap() {
-      const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 8,
-        center: { lat: 40.731, lng: -73.997 },
-      });
-      const geocoder = new google.maps.Geocoder();
-      const infowindow = new google.maps.InfoWindow();
-      document.getElementById("submit").addEventListener("click", () => {
-        geocodeLatLng(geocoder, map, infowindow);
-      },
-        document.getElementById("submit2").addEventListener("click", () => {
-          geocodeAddress(geocoder, map);
-        }));
-    }
-
-    function geocodeLatLng(geocoder, map, infowindow) {
-      const input = document.getElementById("latlng").value;
-      const latlngStr = input.split(",", 2);
-      const latlng = {
-        lat: parseFloat(latlngStr[0]),
-        lng: parseFloat(latlngStr[1]),
-      };
-      geocoder.geocode({ location: latlng }, (results, status) => {
-        if (status === "OK") {
-          if (results[0]) {
-            map.setZoom(11);
-            const marker = new google.maps.Marker({
-              position: latlng,
-              map: map,
-            });
-            infowindow.setContent(results[0].formatted_address);
-            infowindow.open(map, marker);
-          } else {
-            window.alert("No results found");
-          }
-        } else {
-          window.alert("Geocoder failed due to: " + status);
-        }
-      });
-    }
-
-    function geocodeAddress(geocoder, resultsMap) {
-      const address = document.getElementById("address").value;
-      geocoder.geocode({ address: address }, (results, status) => {
-        if (status === "OK") {
-          resultsMap.setCenter(results[0].geometry.location);
-          new google.maps.Marker({
-            map: resultsMap,
-            position: results[0].geometry.location,
-
-          })
-          console.log(results[0].geometry.location.lat());
-          console.log(results[0].geometry.location.lng());
-          document.getElementById("lat").value = results[0].geometry.location.lat();
-          document.getElementById("lng").value = results[0].geometry.location.lng();
-          ;
-
-        } else {
-          alert(
-            "Geocode was not successful for the following reason: " + status
-          );
-        }
-      });
-    }
-
-
-  </script>
+  <link rel="stylesheet" href="style.css">
+  <script src="index.js"></script>
 </head>
 
 <body>
-  <div id="deneme">
+  <div id="middle">
     <div id="floating-panel">
       <input id="latlng" type="text" value="40.714224,-73.961452" />
       <input id="submit" type="button" value="Reverse Geocode" />
@@ -195,7 +19,7 @@
     </div>
 
     <div id="floating-panel2">
-      <input id="address" type="textbox" value="Sydney, NSW" />
+      <input id="address" type="textbox" value="Amsterdam, NL" />
       <input id="submit2" type="button" value="Geocode" />
       <br>
 
@@ -211,8 +35,6 @@
 
 
 
-
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN9R8Mh9VzYQJWi6hvZ-A3EWfrsCzGpDM&callback=initMap&libraries=&v=weekly"
     async></script>

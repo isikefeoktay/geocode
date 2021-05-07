@@ -1,0 +1,93 @@
+#map {
+      position: relative;
+      height: 100%;
+      height: 500px;
+      width: 500px;
+      float: right;
+      margin-right: 5%;
+      top: 10%;
+      right: 5%;
+
+
+
+    }
+
+    
+    html,
+    body {
+      background-image: url(world.jpg);
+      background-position: center;
+      background-size: 100% 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-repeat: no-repeat;
+
+    }
+
+    #floating-panel {
+      position: absolute;
+      top: 12.5%;
+      left: 25%;
+      z-index: 5;
+      background-color: #fff;
+      padding: 15px;
+      border: 3px solid #999;
+      text-align: center;
+      font-family: "Roboto", "sans-serif";
+      line-height: 30px;
+      padding-left: 10px;
+      float: left;
+      margin-left: -200px;
+      width: 350px;
+
+    }
+
+    #floating-panel2 {
+      position: absolute;
+      top: 40%;
+      left: 25%;
+      z-index: 5;
+      background-color: #fff;
+      padding: 15px;
+      border: 3px solid #999;
+      text-align: left;
+      font-family: 'Montserrat', sans-serif;
+      line-height: 30px;
+      padding-left: 10px;
+      margin-left: -200px;
+      width: 350px;
+    }
+
+    
+
+    #latlng {
+      width: 225px;
+    }
+
+    label {
+      color: black;
+    }
+
+    #middle {
+      top: 50%;
+      left: 50%;
+      height: 700px;
+      width: 60%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      position: relative;
+      border-radius: 25px;
+    }
+
+    input[type="textbox"] {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    input[type="button"] {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    input[type="text"] {
+      font-family: 'Montserrat', sans-serif;
+    }
