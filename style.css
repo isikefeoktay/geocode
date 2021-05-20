@@ -69,6 +69,12 @@
       color: black;
     }
 
+    button{
+      font-family: 'Montserrat', sans-serif;
+    }
+    
+  
+
     #middle {
       top: 50%;
       left: 50%;
@@ -78,6 +84,7 @@
       background-color: white;
       position: relative;
       border-radius: 25px;
+      border: 3px solid #999;
     }
 
     input[type="textbox"] {

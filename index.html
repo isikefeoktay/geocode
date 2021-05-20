@@ -8,6 +8,54 @@
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <link rel="stylesheet" href="style.css">
   <script src="index.js"></script>
+
+ 
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+
+  
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-analytics.js"></script>
+
+  <script>
+    
+    var firebaseConfig = {
+      apiKey: "AIzaSyCqFhdHLwiWJYff20yDU_s7AUGtuELqv4M",
+      authDomain: "geocodeosf.firebaseapp.com",
+      databaseURL: "https://geocodeosf-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "geocodeosf",
+      storageBucket: "geocodeosf.appspot.com",
+      messagingSenderId: "280727063986",
+      appId: "1:280727063986:web:980a2baf66b852bf3ce8ab",
+      measurementId: "G-RG47WS5BN6"
+    };
+    
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+  </script>
+
+  <script>
+    function addressToGeocode(address, latitude, longtitude) {
+      firebase.database().ref('geocode/' + address).set({
+        address: document.getElementById("address").value,
+        latitude: results[0].geometry.location.lat(),
+        longtitude: results[0].geometry.location.lng()
+      });
+    }
+
+  </script>
+
+  <script>
+    function geocodeToAddress(address, latitude, longtitude) {
+      firebase.database().ref('geocode/' + address).set({
+        latitude: document.getElementById("latlng").value.latlngStr[0],
+        longtitude: document.getElementById("latlng").value.latlngStr[1]
+      });
+    }
+
+  </script>
+
+
+
+
 </head>
 
 <body>
@@ -15,24 +63,26 @@
     <div id="floating-panel">
       <input id="latlng" type="text" value="40.714224,-73.961452" />
       <input id="submit" type="button" value="Reverse Geocode" />
-
+      <button onclick="geocodeToAddress">Save to database</button>
     </div>
 
     <div id="floating-panel2">
       <input id="address" type="textbox" value="Amsterdam, NL" />
       <input id="submit2" type="button" value="Geocode" />
+      
       <br>
 
       <label>Latitude : </label><input type="text" id="lat">
 
       <br>
       <label>Longitude : </label><input type="text" id="lng">
+      <button onclick="addressToGeocode">Save to database</button>
     </div>
     <br>
     <div id="map"></div>
   </div>
-  <br>
 
+  <br>
 
 
   <script
